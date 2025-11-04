@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import { foodCard } from "../Utils/Data";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, decreaseQty, increaseQty } from "../Redux/CartSlice";
+import toast from "react-hot-toast";
+
+
 
 const FoodCard = () => {
+  const dispatch = useDispatch();
+  const { cartItems } = useSelector((state) => state.cart);
+
   return (
-    <div className="mt-20">
+    <div className="mt-16">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         {foodCard.map((i) => {
-          const [qty, setQty] = useState(0);
+          const existingItem = cartItems.find((x) => x.id === i.id);
+          const qty = existingItem ? existingItem.qty : 0;
 
           return (
             <div
@@ -21,7 +30,10 @@ const FoodCard = () => {
                 />
                 {qty === 0 ? (
                   <button
-                    onClick={() => setQty(1)}
+                    onClick={() => { dispatch(addToCart(i));
+                      toast.success("Added to cart");
+                    }}
+
                     className="absolute bottom-3 right-3 w-10 h-10 bg-white rounded-full flex justify-center items-center text-black shadow-md"
                   >
                     +
@@ -29,14 +41,18 @@ const FoodCard = () => {
                 ) : (
                   <div className="absolute bottom-3 right-3  bg-white rounded-full flex justify-center gap-3  items-center text-black shadow-md">
                     <button
-                      onClick={() => setQty(qty - 1)}
+                      onClick={() => {dispatch(decreaseQty(i))
+                         toast.success("Qty decreased")
+                      }}
                       className="w-8 h-8 bg-red-100 rounded-full flex justify-center items-center text-red-600 font-bold"
                     >
                       -
                     </button>
                     <span className="font-semibold">{qty}</span>
                     <button
-                      onClick={() => setQty(qty + 1)}
+                      onClick={() => { dispatch(increaseQty(i))
+                        toast.success("Qty increased")
+                      }}
                       className="w-8 h-8 bg-green-100 rounded-full flex justify-center items-center text-green-600 font-bold"
                     >
                       +
