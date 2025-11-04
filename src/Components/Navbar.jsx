@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { totalQty } = useSelector((state) => state.cart);
+  const { cartItems } = useSelector((state) => state.cart);
 
   return (
     <nav className="bg-white shadow-md fixed w-full top-0 left-0 z-50">
@@ -18,9 +18,11 @@ const Navbar = () => {
         </h1>
 
         <ul className="hidden lg:flex items-center gap-10">
-          <li className="text-lg font-medium cursor-pointer hover:text-orange-600">
-            Home
-          </li>
+          <Link to={"/"}>
+            <li className="text-lg font-medium cursor-pointer hover:text-orange-600">
+              Home
+            </li>
+          </Link>
           <li className="text-lg font-medium cursor-pointer hover:text-orange-600">
             Menu
           </li>
@@ -36,7 +38,11 @@ const Navbar = () => {
           <FiSearch className="text-xl md:text-2xl cursor-pointer" />
           <Link to={"/cart"} className="relative">
             <FaCartArrowDown className="text-xl md:text-2xl cursor-pointer" />
-            <span className="absolute -top-2.5 -right-2.5 bg-orange-500 text-white rounded-full text-xs w-5 h-5 flex justify-center items-center">{totalQty}</span>
+            {cartItems.length > 0 && (
+              <span className="absolute -top-2.5 -right-2.5 bg-orange-500 text-white rounded-full text-xs w-5 h-5 flex justify-center items-center">
+                {cartItems.length}
+              </span>
+            )}
           </Link>
           <button className=" px-2 md:px-4 py-2 border rounded-full hover:bg-orange-600 hover:text-white transition">
             Sign In
@@ -55,7 +61,7 @@ const Navbar = () => {
       {isOpen && (
         <div className="lg:hidden bg-white shadow-md py-5 px-6">
           <ul className="flex flex-col items-start gap-5 text-lg font-medium">
-            <li className="cursor-pointer hover:text-orange-600">Home</li>
+            <Link to={"/"}><li className="cursor-pointer hover:text-orange-600">Home</li></Link>
             <li className="cursor-pointer hover:text-orange-600">Menu</li>
             <li className="cursor-pointer hover:text-orange-600">Mobile App</li>
             <li className="cursor-pointer hover:text-orange-600">Contact Us</li>
