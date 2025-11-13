@@ -47,7 +47,7 @@ export const foodCard = [
         name:"BBQ Pizza",
         category: "Pizza",
         price: 199,
-        rating: 4,
+        rating: 3,
         description: "Food provides essential nutrients for overall health and well-being",
         img: "assets/fooddata1.jpg"
     },
@@ -55,7 +55,7 @@ export const foodCard = [
         id:'10',
         name:"BBQ Pizza",
         category: "Pizza",
-        price: 199,
+        price: 250,
         rating: 4,
         description: "Food provides essential nutrients for overall health and well-being",
         img: "assets/fooddata1.jpg"

@@ -1,8 +1,8 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './Pages/Home'
-import FoodCard from './Components/FoodCard'
 import CartPage from './Pages/CartPage'
+
 
 const App = () => {
   return (

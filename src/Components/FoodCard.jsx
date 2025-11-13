@@ -4,11 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart, decreaseQty, increaseQty } from "../Redux/CartSlice";
 import toast from "react-hot-toast";
 
-
-
 const FoodCard = () => {
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
+
 
   return (
     <div className="mt-16">
@@ -25,15 +24,14 @@ const FoodCard = () => {
               <div className="relative w-full h-[200px]">
                 <img
                   src={i.img}
-                  alt={i.name}
                   className="w-full h-full object-cover rounded-t-2xl"
                 />
                 {qty === 0 ? (
                   <button
-                    onClick={() => { dispatch(addToCart(i));
+                    onClick={() => {
+                      dispatch(addToCart(i));
                       toast.success("Added to cart");
                     }}
-
                     className="absolute bottom-3 right-3 w-10 h-10 bg-white rounded-full flex justify-center items-center text-black shadow-md"
                   >
                     +
@@ -41,8 +39,9 @@ const FoodCard = () => {
                 ) : (
                   <div className="absolute bottom-3 right-3  bg-white rounded-full flex justify-center gap-3  items-center text-black shadow-md">
                     <button
-                      onClick={() => {dispatch(decreaseQty(i))
-                         toast.success("Qty decreased")
+                      onClick={() => {
+                        dispatch(decreaseQty(i));
+                        toast.success("Qty decreased");
                       }}
                       className="w-8 h-8 bg-red-100 rounded-full flex justify-center items-center text-red-600 font-bold"
                     >
@@ -50,8 +49,9 @@ const FoodCard = () => {
                     </button>
                     <span className="font-semibold">{qty}</span>
                     <button
-                      onClick={() => { dispatch(increaseQty(i))
-                        toast.success("Qty increased")
+                      onClick={() => {
+                        dispatch(increaseQty(i));
+                        toast.success("Qty increased");
                       }}
                       className="w-8 h-8 bg-green-100 rounded-full flex justify-center items-center text-green-600 font-bold"
                     >
@@ -63,7 +63,7 @@ const FoodCard = () => {
 
               <div className="p-4">
                 <h3 className="font-semibold text-[18px] text-black">
-                  {i.name}
+                  {i.title}
                 </h3>
 
                 {/* rating */}
@@ -72,7 +72,7 @@ const FoodCard = () => {
                     <span
                       key={idx}
                       className={
-                        idx < i.rating ? "text-orange-500" : "text-gray-300"
+                      "text-orange-500"
                       }
                     >
                       ★

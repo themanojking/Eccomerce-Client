@@ -3,9 +3,12 @@ import Navbar from "../Components/Navbar";
 import { homeMenu } from "../Utils/Data";
 import { Link } from "react-router-dom";
 import FoodCard from "../Components/FoodCard";
+import Chatbot from "../Components/Chatbot";
+
 
 
 const Home = () => {
+  
   return (
     <>
       <div className="lg:mx-20 mx-3">
@@ -51,6 +54,9 @@ const Home = () => {
           </div>
             <FoodCard />
         </div>
+          <div>
+            <Chatbot />
+          </div>
       </div>
     </>
   );
